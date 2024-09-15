@@ -1,6 +1,14 @@
+import React, { useState } from "react";
 import "./App.css";
 import ToDoTable from "./components/ToDoTable";
 function App() {
+  const [toDos, setTodos] = useState([
+    { rowNumber: 1, rowDescription: "Feed cat", rowAssigned: "Talha" },
+    { rowNumber: 2, rowDescription: "Gym", rowAssigned: "Genar" },
+    { rowNumber: 3, rowDescription: "Study", rowAssigned: "Meral" },
+    { rowNumber: 4, rowDescription: "Work", rowAssigned: "Talha" },
+  ]);
+
   const addTodo = () => {
     if (toDos.length > 0) {
       const newTodo = {
@@ -8,17 +16,10 @@ function App() {
         rowDescription: "New Task",
         rowAssigned: "New Person",
       };
-      toDos.push(newTodo);
-      console.log(toDos);
+      setTodos((toDos) => [...toDos, newTodo]);
     }
   };
 
-  const toDos = [
-    { rowNumber: 1, rowDescription: "Feed cat", rowAssigned: "Talha" },
-    { rowNumber: 2, rowDescription: "Gym", rowAssigned: "Genar" },
-    { rowNumber: 3, rowDescription: "Study", rowAssigned: "Meral" },
-    { rowNumber: 4, rowDescription: "Work", rowAssigned: "Talha" },
-  ];
   return (
     <div className="mt-5 container">
       <div className="card">
