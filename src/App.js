@@ -11,14 +11,19 @@ function App() {
   ]);
 
   const addTodo = (description, assigned) => {
+    // keylerin benzersiz olmasını sağlar
+    let rowNumber = 0;
     if (toDos.length > 0) {
-      const newTodo = {
-        rowNumber: toDos.length + 1,
-        rowDescription: description,
-        rowAssigned: assigned,
-      };
-      setTodos((toDos) => [...toDos, newTodo]);
+      rowNumber = toDos[toDos.length - 1].rowNumber + 1;
+    } else {
+      rowNumber = 1;
     }
+    const newTodo = {
+      rowNumber: rowNumber,
+      rowDescription: description,
+      rowAssigned: assigned,
+    };
+    setTodos((toDos) => [...toDos, newTodo]);
   };
 
   return (
