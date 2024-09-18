@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import "./App.css";
-import ToDoTable from "./components/ToDoTable";
-import NewTodoForm from "./components/NewTodoForm";
-function App() {
+import { ToDoTable } from "./components/ToDoTable";
+import { NewTodoForm } from "./components/NewTodoForm";
+const App = () => {
   const [showAddTodoForm, setShowAddTodoForm] = useState(false);
 
-  const [toDos, setTodos] = useState([
+  const [todos, settodos] = useState([
     { rowNumber: 1, rowDescription: "Feed cat", rowAssigned: "Talha" },
     { rowNumber: 2, rowDescription: "Gym", rowAssigned: "Genar" },
     { rowNumber: 3, rowDescription: "Study", rowAssigned: "Meral" },
     { rowNumber: 4, rowDescription: "Work", rowAssigned: "Talha" },
   ]);
 
-  const addTodo = (description, assigned) => {
+  const addTodo = (description: string, assigned: string) => {
     // keylerin benzersiz olmasını sağlar
     let rowNumber = 0;
-    if (toDos.length > 0) {
-      rowNumber = toDos[toDos.length - 1].rowNumber + 1;
+    if (todos.length > 0) {
+      rowNumber = todos[todos.length - 1].rowNumber + 1;
     } else {
       rowNumber = 1;
     }
@@ -25,14 +25,14 @@ function App() {
       rowDescription: description,
       rowAssigned: assigned,
     };
-    setTodos((toDos) => [...toDos, newTodo]);
+    settodos((todos) => [...todos, newTodo]);
   };
 
-  const deleteTodo = (deleteTodoRowNumber) => {
-    let filtered = toDos.filter(function (value) {
+  const deleteTodo = (deleteTodoRowNumber: number) => {
+    let filtered = todos.filter(function (value) {
       return value.rowNumber !== deleteTodoRowNumber;
     });
-    setTodos(filtered);
+    settodos(filtered);
   };
 
   return (
@@ -40,7 +40,7 @@ function App() {
       <div className="card">
         <div className="card-header">Your Todo's</div>
         <div className="card-body">
-          <ToDoTable toDos={toDos} deleteTodo={deleteTodo} />
+          <ToDoTable todos={todos} deleteTodo={deleteTodo} />
           <button
             onClick={() => setShowAddTodoForm(!showAddTodoForm)}
             className="btn btn-primary"
@@ -52,6 +52,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

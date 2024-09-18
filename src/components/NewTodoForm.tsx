@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function NewTodoForm(props) {
+export const NewTodoForm: React.FC<{ addTodo: Function }> = (props) => {
   //   const descriptionChange = (event) => {
   //     console.log(event.target.value);
   //   };
@@ -49,5 +49,4 @@ function NewTodoForm(props) {
       </form>
     </div>
   );
-}
-export default NewTodoForm;
+};
